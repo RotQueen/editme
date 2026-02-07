@@ -12,8 +12,6 @@
 <meta content="https://editme.agency/portfolio.html" property="og:url"/>
 <meta content="https://editme.agency/images/global/soc.jpg" property="og:image"/>
 <link href="css/main.css" rel="stylesheet" type="text/css"/>
-<link as="video" href="images/portfolio/cards-lg/home/home-lg.webm" media="(min-width: 1024px)" rel="preload" type="video/webm"/>
-<link as="video" href="images/portfolio/cards-lg/home/home-lg.mp4" media="(min-width: 1024px)" rel="preload" type="video/mp4"/>
 <meta content="telephone=no" name="format-detection"/>
 <meta content="портфолио веб-студии, портфолио лендингов, лендинг пейдж, разработка веб-сайтов, создание сайта под ключ, дизайн лендинга, SEO-оптимизация сайта, веб-студия Edit me, кейсы, примеры работ" name="keywords"/><meta content="index,follow,max-image-preview:large" name="robots"/><meta content="summary_large_image" name="twitter:card"/><meta content="Портфолио | Лендинг пейдж и сайты | Веб-студия Edit me" name="twitter:title"/><meta content="Портфолио веб-студии Edit me: примеры лендинг пейдж и сайтов для бизнеса. Дизайн, верстка, анимация, интеграции и адаптив под мобильные устройства." name="twitter:description"/><meta content="https://editme.agency/images/global/soc.jpg" name="twitter:image"/><meta content="Edit me" name="author"/><script type="application/ld+json">{"@context": "https://schema.org", "@type": "Organization", "name": "Edit me", "url": "https://editme.agency/", "logo": "https://editme.agency/favicon/favicon.png", "sameAs": []}</script><script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebPage", "name": "Портфолио | Лендинг пейдж и сайты | Веб-студия Edit me", "url": "https://editme.agency/portfolio.html", "description": "Портфолио веб-студии Edit me: примеры лендинг пейдж и сайтов для бизнеса. Дизайн, верстка, анимация, интеграции и адаптив под мобильные устройства.", "inLanguage": "ru-RU", "isPartOf": {"@type": "WebSite", "name": "Edit me", "url": "https://editme.agency/"}, "publisher": {"@type": "Organization", "name": "Edit me", "url": "https://editme.agency/"}}</script><script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Главная", "item": "https://editme.agency/"}, {"@type": "ListItem", "position": 2, "name": "Портфолио", "item": "https://editme.agency/portfolio.html"}]}</script>
 <style>
@@ -135,7 +133,7 @@
 <source src="images/portfolio/cards-lg/home/home-md.mp4" type="video/mp4"/>
 <source src="images/portfolio/cards-lg/home/home-md.webm" type="video/webm"/>
 </video>
-<video autoplay="" class="adaptive-box__item br-10 item m:show@lg" loop="" muted="" playsinline="" preload="auto">
+<video class="adaptive-box__item br-10 item m:show@lg" loop="" muted="" playsinline="" preload="none">
 <source src="images/portfolio/cards-lg/home/home-lg.mp4" type="video/mp4"/>
 <source src="images/portfolio/cards-lg/home/home-lg.webm" type="video/webm"/>
 </video>
@@ -1475,12 +1473,6 @@
         <div class="content t:size-10 t:size-14@lg">
                     <p>Edit me показывает здесь реальные примеры работ: <strong>лендинг пейдж</strong> и сайты для разных ниш (IT, услуги, продукты, мероприятия и др.). Мы делаем дизайн, аккуратную верстку, анимацию и интеграции, чтобы страница загружалась быстро и стабильно работала на мобильных устройствах. Ищете разработку лендинга под рекламу, запуск продукта или сбор заявок? Посмотрите проекты выше и затем перейдите к условиям: <a class="link" href="/#dev-cost">стоимость разработки</a>, <a class="link" href="/#s_tariffs">тарифы</a> и <a class="link" href="/#guarantee">гарантии</a>. Подробно о составе работ: <a class="link" href="/p_wdit.html">что входит в разработку</a>. Если вам нужен лендинг пейдж «под ключ», оставьте заявку в форме ниже на этой странице. Мы работаем с компаниями по всему миру и подбираем решение под задачу, сроки и бюджет. <a class="link" href="#order">Оставить заявку</a> на разработку лендинга или сайта.</p>        </div> 
     </div> </div>
-<div class="container t:center mt-20 mb-30" hidden="" id="portfolio-load-more-wrap">
-<button class="btn btn-primary btn-primary--arrow btn--theme-primary" id="portfolio-load-more" type="button">
-<span class="btn-primary__text">Показать еще проекты</span>
-<svg class="icon"><use xlink:href="svg-sprite/sprite.svg#long-arrow-md"></use></svg>
-</button>
-</div>
 </div>
 <footer class="footer">
 <div class="container">
@@ -1881,6 +1873,8 @@
   const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   const saveData = navigator.connection && navigator.connection.saveData;
   const optionalNoAutoplay = [
+    'images/portfolio/cards-lg/home/home-lg.mp4',
+    'images/portfolio/cards-lg/home/home-lg.webm',
     'images/portfolio/cards-lg/1/bg-video.mp4',
     'images/portfolio/cards-1200px/9.mp4'
   ];
@@ -1945,55 +1939,6 @@
     if (index > 4) img.loading = 'lazy';
     img.decoding = 'async';
   });
-
-  const portfolioRoot = document.getElementById('s_pf');
-  const loadMoreWrap = document.getElementById('portfolio-load-more-wrap');
-  const loadMoreButton = document.getElementById('portfolio-load-more');
-  if (!portfolioRoot || !loadMoreWrap || !loadMoreButton) return;
-
-  const blocks = Array.from(portfolioRoot.children).filter((node) =>
-    node.matches('div.container, section, .s_pf_desc')
-  );
-
-  if (blocks.length <= 7) return;
-
-  const initiallyVisible = 5;
-  const step = 3;
-  let visible = initiallyVisible;
-
-  function renderBlocks() {
-    blocks.forEach((block, index) => {
-      if (index < visible) {
-        block.hidden = false;
-      } else {
-        block.hidden = true;
-      }
-    });
-
-    const hasMore = visible < blocks.length;
-    loadMoreWrap.hidden = !hasMore;
-    if (!hasMore) {
-      loadMoreButton.setAttribute('aria-disabled', 'true');
-    }
-  }
-
-  function showMoreBlocks() {
-    if (visible >= blocks.length) return;
-    visible = Math.min(visible + step, blocks.length);
-    renderBlocks();
-  }
-
-  loadMoreButton.addEventListener('click', showMoreBlocks, { passive: true });
-
-  const streamObserver = new IntersectionObserver((entries) => {
-    entries.forEach((entry) => {
-      if (!entry.isIntersecting) return;
-      showMoreBlocks();
-    });
-  }, { rootMargin: '45% 0px' });
-
-  streamObserver.observe(loadMoreWrap);
-  renderBlocks();
 })();
 </script>
 <script defer="" src="js/libraries/libraries.js"></script>
